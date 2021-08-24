@@ -1,6 +1,6 @@
 {
   "name": "v-youtube",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/v-youtube.umd.js",
   "module": "./dist/v-youtube.es.js",
   "types": "./dist/index.d.ts",

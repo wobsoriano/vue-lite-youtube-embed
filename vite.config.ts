@@ -30,5 +30,8 @@ module.exports = defineConfig({
         },
         include: ['./src']
     })
-  ]
+  ],
+  optimizeDeps: {
+    exclude: ['vue-demi']
+  }
 })
