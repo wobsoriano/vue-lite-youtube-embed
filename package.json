@@ -1,6 +1,7 @@
 {
   "name": "vue-lite-youtube-embed",
   "version": "0.0.1",
+  "license": "MIT",
   "main": "./dist/vue-lite-youtube-embed.umd.js",
   "module": "./dist/vue-lite-youtube-embed.es.js",
   "types": "./dist/index.d.ts",
