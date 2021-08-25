@@ -11,7 +11,8 @@
     }
   },
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build"
+    "build": "vue-tsc --noEmit && vite build",
+    "play": "npm -C playground run dev"
   },
   "dependencies": {
     "vue-demi": "latest"
