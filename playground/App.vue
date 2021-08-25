@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import { VYoutube } from '../src'
+import VYoutube from '../src'
 </script>

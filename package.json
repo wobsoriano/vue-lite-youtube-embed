@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
+    "prepublishOnly": "yarn build",
     "play": "npm -C playground run dev"
   },
   "dependencies": {
