@@ -34,7 +34,7 @@ export default defineComponent({
             required: false,
             default: ''
         },
-        noCookie: {
+        cookie: {
             type: Boolean,
             required: false,
             default: false
@@ -85,7 +85,7 @@ export default defineComponent({
             : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${this.poster}.jpg`;
         },
         ytUrl() {
-            return this.noCookie ? "https://www.youtube-nocookie.com" : "https://www.youtube.com";
+            return this.cookie ? "https://www.youtube.com" : "https://www.youtube-nocookie.com";
         },
         iframeSrc() {
             return !this.playlist
