@@ -108,12 +108,42 @@ export default defineComponent({
         }
     },
     render() {
-        return h('link', {
-            rel: 'preload',
-            href: 'posterUrl',
-            as: 'image'
+      const iframe = this.iframe ? h('iframe', {
+        class: `${this.iframeClass}`,
+        title: this.title,
+        width: 560,
+        height: 315,
+        frameBorder: 0,
+        allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+        allowFullsreen: true,
+        src: this.iframeSrc
+      }) : null
+
+      return ([
+        h('link', {
+          rel: 'preload',
+          href: this.posterUrl,
+          as: 'image'
+        }),
+        this.preconnected ? h('link', { rel: 'preconnect', href: this.ytUrl }) : null,
+        this.preconnected ? h('link', { rel: 'preconnect', href: 'https://www.google.com' }) : null,
+        this.adNetwork ? h('link', { rel: 'preconnect', href: 'https://static.doubleclick.net' }) : null,
+        this.adNetwork ? h('link', { rel: 'preconnect', href: 'https://googleads.g.doubleclick.net' }) : null,
+        h('div', {
+          on: {
+            pointover: this.warmConnections,
+            click: this.addIframe,
+          },
+          class: `${this.wrapperClass} ${this.iframe && this.activatedClass}`,
+          'data-title': this.title,
+          style: {
+            backgroundImage: `url(${this.posterUrl})`
+          },
+          tabIndex: 0
         }, [
-            h('div', )
+          h('button', { class: `${this.playerClass}` }),
+          iframe
         ])
+      ])
     }
 })
