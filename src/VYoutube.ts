@@ -2,13 +2,6 @@ import { defineComponent } from 'vue-demi'
 import h from './utils'
 import './main.css'
 
-type imgResolution =
-  | "default"
-  | "mqdefault"
-  | "hqdefault"
-  | "sddefault"
-  | "maxresdefault";
-
 const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
 
 export default defineComponent({
@@ -130,7 +123,9 @@ export default defineComponent({
           },
           tabIndex: 0
         }, [
+          // Play button
           h('button', { class: `${this.playerClass}` }),
+          // Iframe
           this.iframe ? h('iframe', {
             class: `${this.iframeClass}`,
             title: this.title,

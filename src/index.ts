@@ -9,5 +9,5 @@ if (isVue2) {
 }
 
 export {
-    VYoutube
+    VYoutube,
 }
