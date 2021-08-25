@@ -1,3 +1,5 @@
+// This is an exact copy of react-lite-youtube-embed ported to Vue.
+// https://github.com/ibrahimcesar/react-lite-youtube-embed
 import { defineComponent } from 'vue-demi'
 import h from './utils'
 import './main.css'

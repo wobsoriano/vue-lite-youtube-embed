@@ -58,3 +58,7 @@ Only two props are required to work: `id` from the YouTube you want to render an
 | poster | string. One of `default` `mqdefault`  `hqdefault` `sddefault` `maxresdefault` |   Defines the image size to call on first render as poster image. See: https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api |
 | wrapperClass | string |   Pass the string class that wraps the iFrame |
 | onIframeAdded | function | Callback that will be called when iframe is added |
+
+## License
+
+MIT License © 2021 [Robert Soriano](https://github.com/wobsoriano)
