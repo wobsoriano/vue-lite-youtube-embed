@@ -6,6 +6,11 @@ const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
 
 export default defineComponent({
     props: {
+        announce: {
+            type: String,
+            required: false,
+            default: 'Watch'
+        },
         id: {
             type: String,
             required: true
@@ -124,10 +129,10 @@ export default defineComponent({
           tabIndex: 0
         }, [
           // Play button
-          h('button', { class: `${this.playerClass}` }),
+          h('button', { class: this.playerClass, ariaLabel: `${this.announce} ${this.title}` }),
           // Iframe
           this.iframe ? h('iframe', {
-            class: `${this.iframeClass}`,
+            class: this.iframeClass,
             title: this.title,
             width: 560,
             height: 315,

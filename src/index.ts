@@ -1,3 +1,3 @@
-import VYoutube from './VYoutube'
+import LiteYouTubeEmbed from './LiteYouTubeEmbed'
 
-export default VYoutube
+export default LiteYouTubeEmbed
