@@ -6,19 +6,35 @@
 
 ## Installation
 
-```sh
+Vue 3:
+
+```bash
 yarn add vue-lite-youtube-embed
+```
+
+Vue 2:
+
+```bash
+yarn add vue-lite-youtube-embed @vue/composition-api
 ```
 
 ## Usage
 
 ```html
 <template>
-  <LiteYouTubeEmbed id="dQw4w9WgXcQ" title="Rick Astley - Never Gonna Give You Up (Official Music Video)" />
+  <LiteYouTubeEmbed 
+    id="dQw4w9WgXcQ"
+    title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
+  />
 </template>
 
-<script setup>
+<script>
+import { defineComponent } from 'vue'
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+
+export default defineComponent({
+    components: { LiteYouTubeEmbed }
+})
 </script>
 ```
 
@@ -28,8 +44,8 @@ Only two props are required to work: `id` from the YouTube you want to render an
 
 | Prop   |      Type      |  Description |
 |----------|:--------:|------------|
-| **id** |  string | id of the video or playlist |
-| **title** |    string   | Here goes your video title. Always provide a title for iFrames: https://dequeuniversity.com/tips/provide-iframe-titles Help the web be accessible ;) #a11y |
+| **id** |  string | Id of the video or playlist |
+| **title** |    string   | Video title. Always provide a title for iFrames: https://dequeuniversity.com/tips/provide-iframe-titles Help the web be accessible ;) #a11y |
 | announce |    string   | Default: `Watch`. This will be passed to the button in order to be announced to the final user as in `Clickable Watch, ${title}, button` , customize to match your own language #a11y #i18n |
 | activeClass | string | Pass the string class for the active state |
 | adNetwork | boolean | Default: `false`  To preconnect or not to doubleclick addresses called by YouTube iframe (the adnetwork from Google) |
