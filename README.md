@@ -32,6 +32,7 @@ yarn add vue-lite-youtube-embed @vue/composition-api
 <script>
 import { defineComponent } from 'vue'
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import 'vue-lite-youtube-embed/dist/style.css'
 
 export default defineComponent({
     components: { LiteYouTubeEmbed }

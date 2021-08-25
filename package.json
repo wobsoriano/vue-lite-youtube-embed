@@ -1,6 +1,6 @@
 {
   "name": "vue-lite-youtube-embed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "main": "./dist/vue-lite-youtube-embed.umd.js",
   "module": "./dist/vue-lite-youtube-embed.es.js",
@@ -9,7 +9,8 @@
     ".": {
       "import": "./dist/vue-lite-youtube-embed.es.js",
       "require": "./dist/vue-lite-youtube-embed.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.11",
+    "rollup-plugin-postcss": "^4.0.1",
     "typescript": "^4.3.2",
     "vite": "^2.4.4",
     "vite-plugin-dts": "^0.7.0",

@@ -3,5 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import LiteYouTubeEmbed from '../src'
+import LiteYouTubeEmbed from '../'
+import '../dist/style.css'
 </script>
