@@ -1,13 +1,13 @@
 {
-  "name": "v-youtube",
-  "version": "0.0.2",
-  "main": "./dist/v-youtube.umd.js",
-  "module": "./dist/v-youtube.es.js",
+  "name": "vue-lite-youtube-embed",
+  "version": "0.0.1",
+  "main": "./dist/vue-lite-youtube-embed.umd.js",
+  "module": "./dist/vue-lite-youtube-embed.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/v-youtube.es.js",
-      "require": "./dist/v-youtube.umd.js"
+      "import": "./dist/vue-lite-youtube-embed.es.js",
+      "require": "./dist/vue-lite-youtube-embed.umd.js"
     }
   },
   "scripts": {
@@ -42,6 +42,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wobsoriano/v-youtube.git"
+    "url": "https://github.com/wobsoriano/vue-lite-youtube-embed.git"
   }
 }

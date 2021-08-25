@@ -1,6 +1,7 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import pkg from './package.json'
 
 const resolvePath = (str: string) => path.resolve(__dirname, str);
 
@@ -8,16 +9,14 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: resolvePath('src/index.ts'),
-      name: 'v-youtube',
-      fileName: (format) => `v-youtube.${format}.js`
+      name: pkg.name,
+      fileName: (format) => `${pkg.name}.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', 'get-youtube-id', 'youtube-player'],
+      external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue',
-          'youtube-player': 'YoutubePlayer',
-          'get-youtube-id': 'GetYouTubeId'
+          vue: 'Vue'
         }
       }
     },
