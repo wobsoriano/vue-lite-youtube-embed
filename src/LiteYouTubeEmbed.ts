@@ -1,10 +1,17 @@
 // This is an exact copy of react-lite-youtube-embed ported to Vue.
 // https://github.com/ibrahimcesar/react-lite-youtube-embed
-import { defineComponent } from 'vue-demi'
+import { defineComponent, PropType } from 'vue-demi'
 import h from './utils'
 import './main.css'
 
 const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
+
+type imgResolution =
+  | "default"
+  | "mqdefault"
+  | "hqdefault"
+  | "sddefault"
+  | "maxresdefault"
 
 export default defineComponent({
     props: {
@@ -62,7 +69,7 @@ export default defineComponent({
             default: ''
         },
         poster: {
-            type: String,
+            type: String as PropType<imgResolution>,
             required: false,
             default: 'hqdefault'
         },
