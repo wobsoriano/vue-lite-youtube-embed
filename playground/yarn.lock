@@ -397,10 +397,10 @@ vue-demi@latest:
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.3.tgz#dd7495b92b495ecfa35675bf024b1358a7add150"
   integrity sha512-DpM0TTMpclRZDV6AIacgg837zrim/C9Zn+2ztXBs9hsESJN9vC83ztjTe4KC4HgJuVle8YUjPp7HTwWtwOHfmg==
 
-vue-lite-youtube-embed@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/vue-lite-youtube-embed/-/vue-lite-youtube-embed-0.0.2.tgz#5eea49f4db285a719127611f907aca9d7f55b08d"
-  integrity sha512-DZ6tsmKKWezyhFe0rdfQJC7l1EXZxKMkbfBXcoaQywkSJMegXKSWABlfo9pVLy7CFSMtRN8Fc5vy+kIlN7IIhA==
+vue-lite-youtube-embed@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vue-lite-youtube-embed/-/vue-lite-youtube-embed-0.0.4.tgz#e8d5cd0ec3b015e787bdd085ce2a6df976fd6cab"
+  integrity sha512-g+Ww52BFh875vSVpmDCb0avcEwsdXPy/L5nToqUBjAuHCgdOcNvkUXPe/2WamzePdVZD/YVDSQcMoHpk0rci3w==
   dependencies:
     vue-demi latest
 
