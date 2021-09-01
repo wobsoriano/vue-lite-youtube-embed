@@ -1,9 +1,11 @@
-<div align="center">
-  <h1>📺  Vue Lite YouTube Embed</h1>
-  <blockquote>A private by default, faster and cleaner YouTube embed component for Vue applications</blockquote>
-  
-  <strong>Port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-youtube-embed) to a Vue Component. Provide videos with a supercharged focus on visual performance. An ["Adaptive Loading"](https://www.youtube.com/watch?v=puUPpVrIRkc) way to handle iframes for YouTube.</strong>
-</div>
+# vue-lite-youtube-embed
+
+[![npm version](https://badge.fury.io/js/vue-lite-youtube-embed.svg)](https://badge.fury.io/js/vue-lite-youtube-embed)
+[![bundle size](https://badgen.net/bundlephobia/minzip/vue-lite-youtube-embed)](https://bundlephobia.com/result?p=vue-lite-youtube-embed)
+
+A private by default, faster and cleaner YouTube embed component for Vue applications.
+
+Port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-youtube-embed) to a Vue Component. Provide videos with a supercharged focus on visual performance. An ["Adaptive Loading"](https://www.youtube.com/watch?v=puUPpVrIRkc) way to handle iframes for YouTube.
 
 ## Installation
 
