@@ -147,7 +147,7 @@ export default defineComponent({
             height: 315,
             frameborder: 0,
             allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
-            allowfullsreen: true,
+            allowfullscreen: true,
             src: this.iframeSrc
           }) : null
         ])
