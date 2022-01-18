@@ -111,7 +111,7 @@ export default defineComponent({
     },
     iframeSrc() {
       return !this.playlist
-        ? `${this.ytUrl}/embed/${this.videoId}?autoplay=1&state=1${this.mutedImp}${this.params}`
+        ? `${this.ytUrl}/embed/${this.videoId}?autoplay=1&state=1${this.mutedImp}&${this.params}`
         : `${this.ytUrl}/embed/videoseries?autoplay=1&list=${this.videoId}${this.mutedImp}&${this.params}`;
     },
   },
