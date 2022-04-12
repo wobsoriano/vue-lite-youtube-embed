@@ -6,6 +6,7 @@
   "main": "./dist/vue-lite-youtube-embed.umd.js",
   "module": "./dist/vue-lite-youtube-embed.es.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/vue-lite-youtube-embed.es.js",
