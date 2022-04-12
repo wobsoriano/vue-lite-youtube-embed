@@ -12,7 +12,7 @@ export default defineConfig({
     lib: {
       entry: resolvePath('src/index.ts'),
       name: pkg.name,
-      fileName: (format) => `${pkg.name}.${format}.js`,
+      fileName: (format) => `${pkg.name.split('/').at(-1)}.${format}.js`,
     },
     rollupOptions: {
       external: ['vue'],
