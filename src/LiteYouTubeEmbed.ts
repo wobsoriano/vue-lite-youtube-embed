@@ -120,6 +120,7 @@ export default defineComponent({
     const iframe = ref(false)
 
     const videoId = computed(() => encodeURIComponent(props.id))
+    const paramsImp = computed(() => `&${props.params}` || '')
     const mutedImp = computed(() => props.muted ? '&mute=1' : '')
     const format = computed(() => props.webp ? 'webp' : 'jpg')
     const vi = computed(() => props.webp ? 'vi_webp' : 'vi')
@@ -135,8 +136,8 @@ export default defineComponent({
       ? 'https://www.youtube.com'
       : 'https://www.youtube-nocookie.com')
     const iframeSrc = computed(() => !props.playlist
-      ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&state=1${mutedImp.value}&${props.params}`
-      : `${ytUrl.value}/embed/videoseries?autoplay=1&list=${videoId.value}${mutedImp.value}&${props.params}`)
+      ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&state=1${mutedImp.value}${paramsImp.value}`
+      : `${ytUrl.value}/embed/videoseries?autoplay=1&list=${videoId.value}${mutedImp.value}${paramsImp.value}`)
 
     function addIframe() {
       if (iframe.value)
@@ -176,7 +177,6 @@ export default defineComponent({
             'backgroundImage': `url(${posterUrl.value})`,
             '--aspect-ratio': `${(props.aspectHeight / props.aspectWidth) * 100}%`,
           },
-          'tabIndex': 0,
         },
         [
           // Play button

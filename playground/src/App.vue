@@ -9,4 +9,3 @@ import 'vue-lite-youtube-embed/style.css'
     title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
   />
 </template>
-
