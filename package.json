@@ -1,12 +1,12 @@
 {
-  "name": "@jacenre/vue-lite-youtube-embed",
+  "name": "vue-lite-youtube-embed",
   "type": "module",
   "version": "1.0.0",
   "description": "A private by default, faster and cleaner YouTube embed component for Vue applications.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jacenre/vue-lite-youtube-embed.git"
+    "url": "https://github.com/wobsoriano/vue-lite-youtube-embed.git"
   },
   "keywords": [
     "vue",
