@@ -5,7 +5,7 @@
 
 A private by default, faster and cleaner YouTube embed component for Vue applications.
 
-Port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-youtube-embed) to a Vue Component. Provide videos with a supercharged focus on visual performance. An ["Adaptive Loading"](https://www.youtube.com/watch?v=puUPpVrIRkc) way to handle iframes for YouTube.
+Vue port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-youtube-embed). Provide videos with a supercharged focus on visual performance. An ["Adaptive Loading"](https://www.youtube.com/watch?v=puUPpVrIRkc) way to handle iframes for YouTube.
 
 ## Installation
 
