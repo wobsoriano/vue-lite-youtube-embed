@@ -46,7 +46,7 @@
     "vue-demi": "latest"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.27.0",
+    "@antfu/eslint-config": "^0.34.0",
     "bumpp": "^8.2.1",
     "eslint": "^8.29.0",
     "taze": "^0.8.4",
