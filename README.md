@@ -75,4 +75,4 @@ Only two props are required to work: `id` from the YouTube you want to render an
 
 ## License
 
-MIT License © 2021 [Robert Soriano](https://github.com/wobsoriano)
+MIT
