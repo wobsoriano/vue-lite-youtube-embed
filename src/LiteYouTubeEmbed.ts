@@ -1,17 +1,18 @@
 // This is an exact copy of react-lite-youtube-embed ported to Vue.
 // https://github.com/ibrahimcesar/react-lite-youtube-embed
-import { defineComponent, PropType } from 'vue-demi';
-import h from './utils';
-import './main.css';
+import type { PropType } from 'vue-demi'
+import { defineComponent } from 'vue-demi'
+import h from './utils'
+import './main.css'
 
-const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href });
+const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
 
 type imgResolution =
   | 'default'
   | 'mqdefault'
   | 'hqdefault'
   | 'sddefault'
-  | 'maxresdefault';
+  | 'maxresdefault'
 
 export default defineComponent({
   props: {
@@ -84,47 +85,49 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['iframeAdded'],
   data: () => ({
     preconnected: false,
     iframe: false,
   }),
   computed: {
     videoId() {
-      return encodeURIComponent(this.id);
+      return encodeURIComponent(this.id)
     },
     posterUrl() {
-      const videoPlaylisCoverId =
-        typeof this.playlistCoverId === 'string'
+      const videoPlaylisCoverId
+        = typeof this.playlistCoverId === 'string'
           ? encodeURIComponent(this.playlistCoverId)
-          : null;
+          : null
       return !this.playlist
         ? `https://i.ytimg.com/vi/${this.videoId}/${this.poster}.jpg`
-        : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${this.poster}.jpg`;
+        : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${this.poster}.jpg`
     },
     ytUrl() {
       return this.cookie
         ? 'https://www.youtube.com'
-        : 'https://www.youtube-nocookie.com';
+        : 'https://www.youtube-nocookie.com'
     },
     mutedImp() {
-      return this.muted ? '&mute=1' : '';
+      return this.muted ? '&mute=1' : ''
     },
     iframeSrc() {
       return !this.playlist
         ? `${this.ytUrl}/embed/${this.videoId}?autoplay=1&state=1${this.mutedImp}&${this.params}`
-        : `${this.ytUrl}/embed/videoseries?autoplay=1&list=${this.videoId}${this.mutedImp}&${this.params}`;
+        : `${this.ytUrl}/embed/videoseries?autoplay=1&list=${this.videoId}${this.mutedImp}&${this.params}`
     },
   },
-  emits: ['iframeAdded'],
   methods: {
     warmConnections() {
-      if (this.preconnected) return;
-      this.preconnected = true;
+      if (this.preconnected)
+        return
+      this.preconnected = true
     },
     addIframe() {
-      if (this.iframe) return;
-      this.$emit('iframeAdded');
-      this.iframe = true;
+      if (this.iframe)
+        return
+      this.$emit('iframeAdded')
+      this.iframe = true
     },
   },
   render() {
@@ -143,16 +146,16 @@ export default defineComponent({
       h(
         'div',
         {
-          on: {
+          'on': {
             pointerover: this.warmConnections,
             click: this.addIframe,
           },
-          class: `${this.wrapperClass} ${this.iframe && this.activatedClass}`,
+          'class': `${this.wrapperClass} ${this.iframe && this.activatedClass}`,
           'data-title': this.title,
-          style: {
+          'style': {
             backgroundImage: `url(${this.posterUrl})`,
           },
-          tabIndex: 0,
+          'tabIndex': 0,
         },
         [
           // Play button
@@ -163,19 +166,19 @@ export default defineComponent({
           // Iframe
           this.iframe
             ? h('iframe', {
-                class: this.iframeClass,
-                title: this.title,
-                width: 560,
-                height: 315,
-                frameborder: 0,
-                allow:
+              class: this.iframeClass,
+              title: this.title,
+              width: 560,
+              height: 315,
+              frameborder: 0,
+              allow:
                   'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
-                allowfullscreen: true,
-                src: this.iframeSrc,
-              })
+              allowfullscreen: true,
+              src: this.iframeSrc,
+            })
             : null,
-        ]
+        ],
       ),
-    ];
+    ]
   },
-});
+})
