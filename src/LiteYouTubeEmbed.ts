@@ -12,7 +12,7 @@ import './main.css'
 
 const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
 
-type imgResolution =
+export type ImageResolution =
   | 'default'
   | 'mqdefault'
   | 'hqdefault'
@@ -75,7 +75,7 @@ export default defineComponent({
       default: '',
     },
     poster: {
-      type: String as PropType<imgResolution>,
+      type: String as PropType<ImageResolution>,
       required: false,
       default: 'hqdefault',
     },
@@ -89,6 +89,30 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    thumbnail: {
+      type: String,
+      required: false,
+    },
+    webp: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    rel: {
+      type: String as PropType<'prefetch' | 'preload'>,
+      required: false,
+      default: 'preload',
+    },
+    aspectHeight: {
+      type: Number,
+      required: false,
+      default: 9,
+    },
+    aspectWidth: {
+      type: Number,
+      required: false,
+      default: 16,
+    },
   },
   emits: ['iframeAdded'],
   setup(props, { emit }) {
@@ -96,19 +120,20 @@ export default defineComponent({
     const iframe = ref(false)
 
     const videoId = computed(() => encodeURIComponent(props.id))
+    const mutedImp = computed(() => props.muted ? '&mute=1' : '')
+    const format = computed(() => props.webp ? 'webp' : 'jpg')
+    const vi = computed(() => props.webp ? 'vi_webp' : 'vi')
+    const videoPlaylistCoverId = computed(() => typeof props.playlistCoverId === 'string' ? encodeURIComponent(props.playlistCoverId) : null)
+
     const posterUrl = computed(() => {
-      const videoPlaylisCoverId
-        = typeof props.playlistCoverId === 'string'
-          ? encodeURIComponent(props.playlistCoverId)
-          : null
-      return !props.playlist
-        ? `https://i.ytimg.com/vi/${videoId.value}/${props.poster}.jpg`
-        : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${props.poster}.jpg`
+      return props.thumbnail || (!props.playlist
+        ? `https://i.ytimg.com/${vi.value}/${videoId.value}/${props.poster}.${format.value}`
+        : `https://i.ytimg.com/${vi.value}/${videoPlaylistCoverId.value}/${props.poster}.${format.value}`)
     })
+
     const ytUrl = computed(() => props.cookie
       ? 'https://www.youtube.com'
       : 'https://www.youtube-nocookie.com')
-    const mutedImp = computed(() => props.muted ? '&mute=1' : '')
     const iframeSrc = computed(() => !props.playlist
       ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&state=1${mutedImp.value}&${props.params}`
       : `${ytUrl.value}/embed/videoseries?autoplay=1&list=${videoId.value}${mutedImp.value}&${props.params}`)
@@ -128,7 +153,7 @@ export default defineComponent({
 
     return () => [
       h('link', {
-        rel: 'preload',
+        rel: props.rel,
         href: posterUrl.value,
         as: 'image',
       }),
@@ -139,7 +164,7 @@ export default defineComponent({
         ? linkPreconnect('https://googleads.g.doubleclick.net')
         : null,
       h(
-        'div',
+        'article',
         {
           'on': {
             pointerover: warmConnections,
@@ -148,7 +173,8 @@ export default defineComponent({
           'class': `${props.wrapperClass} ${iframe.value && props.activatedClass}`,
           'data-title': props.title,
           'style': {
-            backgroundImage: `url(${posterUrl.value})`,
+            'backgroundImage': `url(${posterUrl.value})`,
+            '--aspect-ratio': `${(props.aspectHeight / props.aspectWidth) * 100}%`,
           },
           'tabIndex': 0,
         },
