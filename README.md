@@ -9,37 +9,24 @@ Port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-yo
 
 ## Installation
 
-Vue 3:
-
 ```bash
-yarn add vue-lite-youtube-embed
-```
-
-Vue 2:
-
-```bash
-yarn add vue-lite-youtube-embed @vue/composition-api
+pnpm add vue-lite-youtube-embed
 ```
 
 ## Usage
 
-```html
+```vue
+<script setup>
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import 'vue-lite-youtube-embed/style.css'
+</script>
+
 <template>
-  <LiteYouTubeEmbed 
+  <LiteYouTubeEmbed
     id="dQw4w9WgXcQ"
     title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
   />
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
-import 'vue-lite-youtube-embed/dist/style.css'
-
-export default defineComponent({
-    components: { LiteYouTubeEmbed }
-})
-</script>
 ```
 
 ## Props
