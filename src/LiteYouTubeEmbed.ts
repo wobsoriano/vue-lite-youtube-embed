@@ -1,7 +1,12 @@
-// This is an exact copy of react-lite-youtube-embed ported to Vue.
-// https://github.com/ibrahimcesar/react-lite-youtube-embed
+/*!
+ * Original code by Ibrahim Cesar
+ * MIT Licensed, Copyright 2022 Ibrahim Cesar, see https://github.com/ibrahimcesar/react-lite-youtube-embed/blob/main/LICENSE for details
+ *
+ * Credits to the team:
+ * https://github.com/ibrahimcesar/react-lite-youtube-embed/blob/main/src/lib/index.tsx
+ */
 import type { PropType } from 'vue-demi'
-import { defineComponent } from 'vue-demi'
+import { computed, defineComponent, ref } from 'vue-demi'
 import h from './utils'
 import './main.css'
 
@@ -86,95 +91,85 @@ export default defineComponent({
     },
   },
   emits: ['iframeAdded'],
-  data: () => ({
-    preconnected: false,
-    iframe: false,
-  }),
-  computed: {
-    videoId() {
-      return encodeURIComponent(this.id)
-    },
-    posterUrl() {
+  setup(props, { emit }) {
+    const preconnected = ref(false)
+    const iframe = ref(false)
+
+    const videoId = computed(() => encodeURIComponent(props.id))
+    const posterUrl = computed(() => {
       const videoPlaylisCoverId
-        = typeof this.playlistCoverId === 'string'
-          ? encodeURIComponent(this.playlistCoverId)
+        = typeof props.playlistCoverId === 'string'
+          ? encodeURIComponent(props.playlistCoverId)
           : null
-      return !this.playlist
-        ? `https://i.ytimg.com/vi/${this.videoId}/${this.poster}.jpg`
-        : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${this.poster}.jpg`
-    },
-    ytUrl() {
-      return this.cookie
-        ? 'https://www.youtube.com'
-        : 'https://www.youtube-nocookie.com'
-    },
-    mutedImp() {
-      return this.muted ? '&mute=1' : ''
-    },
-    iframeSrc() {
-      return !this.playlist
-        ? `${this.ytUrl}/embed/${this.videoId}?autoplay=1&state=1${this.mutedImp}&${this.params}`
-        : `${this.ytUrl}/embed/videoseries?autoplay=1&list=${this.videoId}${this.mutedImp}&${this.params}`
-    },
-  },
-  methods: {
-    warmConnections() {
-      if (this.preconnected)
+      return !props.playlist
+        ? `https://i.ytimg.com/vi/${videoId.value}/${props.poster}.jpg`
+        : `https://i.ytimg.com/vi/${videoPlaylisCoverId}/${props.poster}.jpg`
+    })
+    const ytUrl = computed(() => props.cookie
+      ? 'https://www.youtube.com'
+      : 'https://www.youtube-nocookie.com')
+    const mutedImp = computed(() => props.muted ? '&mute=1' : '')
+    const iframeSrc = computed(() => !props.playlist
+      ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&state=1${mutedImp.value}&${props.params}`
+      : `${ytUrl.value}/embed/videoseries?autoplay=1&list=${videoId.value}${mutedImp.value}&${props.params}`)
+
+    function addIframe() {
+      if (iframe.value)
         return
-      this.preconnected = true
-    },
-    addIframe() {
-      if (this.iframe)
+      emit('iframeAdded')
+      iframe.value = true
+    }
+
+    function warmConnections() {
+      if (preconnected.value)
         return
-      this.$emit('iframeAdded')
-      this.iframe = true
-    },
-  },
-  render() {
-    return [
+      preconnected.value = true
+    }
+
+    return () => [
       h('link', {
         rel: 'preload',
-        href: this.posterUrl,
+        href: posterUrl.value,
         as: 'image',
       }),
-      this.preconnected ? linkPreconnect(this.ytUrl) : null,
-      this.preconnected ? linkPreconnect('https://www.google.com') : null,
-      this.adNetwork ? linkPreconnect('https://static.doubleclick.net') : null,
-      this.adNetwork
+      preconnected.value ? linkPreconnect(ytUrl.value) : null,
+      preconnected.value ? linkPreconnect('https://www.google.com') : null,
+      props.adNetwork ? linkPreconnect('https://static.doubleclick.net') : null,
+      props.adNetwork
         ? linkPreconnect('https://googleads.g.doubleclick.net')
         : null,
       h(
         'div',
         {
           'on': {
-            pointerover: this.warmConnections,
-            click: this.addIframe,
+            pointerover: warmConnections,
+            click: addIframe,
           },
-          'class': `${this.wrapperClass} ${this.iframe && this.activatedClass}`,
-          'data-title': this.title,
+          'class': `${props.wrapperClass} ${iframe.value && props.activatedClass}`,
+          'data-title': props.title,
           'style': {
-            backgroundImage: `url(${this.posterUrl})`,
+            backgroundImage: `url(${posterUrl.value})`,
           },
           'tabIndex': 0,
         },
         [
           // Play button
           h('button', {
-            class: this.playerClass,
-            ariaLabel: `${this.announce} ${this.title}`,
+            class: props.playerClass,
+            ariaLabel: `${props.announce} ${props.title}`,
           }),
           // Iframe
-          this.iframe
+          iframe.value
             ? h('iframe', {
-              class: this.iframeClass,
-              title: this.title,
+              class: props.iframeClass,
+              title: props.title,
               width: 560,
               height: 315,
               frameborder: 0,
               allow:
                   'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
               allowfullscreen: true,
-              src: this.iframeSrc,
+              src: iframeSrc.value,
             })
             : null,
         ],
