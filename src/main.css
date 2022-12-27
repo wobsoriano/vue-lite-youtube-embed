@@ -51,7 +51,7 @@
   border: none;
 }
 
-.yt-lite:hover > .lty-playbtn
+.yt-lite:hover > .lty-playbtn,
 .yt-lite:focus-within > .lty-playbtn {
   filter: none;
 }
