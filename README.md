@@ -38,6 +38,8 @@ Only two props are required to work: `id` from the YouTube you want to render an
 | **id** |  string | Id of the video or playlist |
 | **title** |    string   | Video title. Always provide a title for iFrames: https://dequeuniversity.com/tips/provide-iframe-titles Help the web be accessible ;) #a11y |
 | announce |    string   | Default: `Watch`. This will be passed to the button in order to be announced to the final user as in `Clickable Watch, ${title}, button` , customize to match your own language #a11y #i18n |
+| aspectHeight | number | Default: `9`. Use this optional prop if you want a custom aspect-ratio. Please be aware of aspect height and width relation and also any custom CSS you are using. |
+| aspectWidth | number | Default: `16`. Use this optional prop if you want a custom aspect-ratio. Please be aware of aspect height and width relation and also any custom CSS you are using. |
 | activeClass | string | Pass the string class for the active state |
 | adNetwork | boolean | Default: `false`  To preconnect or not to doubleclick addresses called by YouTube iframe (the adnetwork from Google) |
 | cookie | boolean |    Default: `false` Connect to YouTube via the Privacy-Enhanced Mode using https://www.youtube-nocookie.com You should opt-in to allow cookies|
@@ -48,6 +50,9 @@ Only two props are required to work: `id` from the YouTube you want to render an
 | playlist | boolean |    Use `true` when your id be from a playlist |
 | playlistCoverId | string | The ids for playlists did not bring the cover in a pattern to render so you'll need pick up a video from the playlist (or in fact, whatever id) and use to render the cover. There's a programmatic way to get the cover from YouTube API v3 but the aim of this component is do not make any another call and reduce requests and bandwidth usage as much as possibe  |
 | poster | string. One of `default` `mqdefault`  `hqdefault` `sddefault` `maxresdefault` |   Defines the image size to call on first render as poster image. See: https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api |
+| rel | string | Default `preload`. allows for prefetch or preload of the link url |
+| thumbnail | string | Pass an optional image url to override the default poster and set a custom poster image |
+| webp | boolean | Default `false`. When set, uses the WebP format for poster images |
 | wrapperClass | string |   Pass the string class that wraps the iFrame |
 
 ## Events
