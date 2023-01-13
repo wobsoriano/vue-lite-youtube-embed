@@ -19,6 +19,13 @@ export type ImageResolution =
   | 'sddefault'
   | 'maxresdefault'
 
+function runCommand(iframe: HTMLIFrameElement | null, func: 'stopVideo' | 'pauseVideo' | 'playVideo') {
+  if (iframe === null)
+    throw new Error('iframe element not instantiated.')
+
+  iframe.contentWindow?.postMessage(`{"event":"command","func":"${func}","args":""}`, '*')
+}
+
 export default defineComponent({
   props: {
     announce: {
@@ -115,9 +122,10 @@ export default defineComponent({
     },
   },
   emits: ['iframeAdded'],
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const preconnected = ref(false)
     const iframe = ref(false)
+    const iframeElement = ref<HTMLIFrameElement | null>(null)
 
     const videoId = computed(() => encodeURIComponent(props.id))
     const paramsImp = computed(() => `&${props.params}` || '')
@@ -136,14 +144,14 @@ export default defineComponent({
       ? 'https://www.youtube.com'
       : 'https://www.youtube-nocookie.com')
     const iframeSrc = computed(() => !props.playlist
-      ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&state=1${mutedImp.value}${paramsImp.value}`
-      : `${ytUrl.value}/embed/videoseries?autoplay=1&list=${videoId.value}${mutedImp.value}${paramsImp.value}`)
+      ? `${ytUrl.value}/embed/${videoId.value}?autoplay=1&enablejsapi=1&state=1${mutedImp.value}${paramsImp.value}`
+      : `${ytUrl.value}/embed/videoseries?autoplay=1&enablejsapi=1&list=${videoId.value}${mutedImp.value}${paramsImp.value}`)
 
     function addIframe() {
       if (iframe.value)
         return
-      emit('iframeAdded')
       iframe.value = true
+      emit('iframeAdded')
     }
 
     function warmConnections() {
@@ -151,6 +159,21 @@ export default defineComponent({
         return
       preconnected.value = true
     }
+
+    expose({
+      getPlayerInstance() {
+        return iframeElement.value
+      },
+      stopVideo() {
+        runCommand(iframeElement.value, 'stopVideo')
+      },
+      pauseVideo() {
+        runCommand(iframeElement.value, 'pauseVideo')
+      },
+      playVideo() {
+        runCommand(iframeElement.value, 'playVideo')
+      },
+    })
 
     return () => [
       h('link', {
@@ -181,12 +204,14 @@ export default defineComponent({
         [
           // Play button
           h('button', {
+            type: 'button',
             class: props.playerClass,
             ariaLabel: `${props.announce} ${props.title}`,
           }),
           // Iframe
           iframe.value
             ? h('iframe', {
+              ref: iframeElement,
               class: props.iframeClass,
               title: props.title,
               width: 560,
