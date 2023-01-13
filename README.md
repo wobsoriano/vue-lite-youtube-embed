@@ -65,6 +65,10 @@ import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
 import 'vue-lite-youtube-embed/style.css'
 
 const iframe = ref(null)
+
+iframe.value?.stopVideo()
+iframe.value?.pauseVideo()
+iframe.value?.playVideo()
 </script>
 
 <template>
@@ -73,17 +77,6 @@ const iframe = ref(null)
     ref="iframe"
     title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
   />
-  <div v-if="iframe">
-    <button @click="iframe?.stopVideo">
-      Stop
-    </button>
-    <button @click="iframe?.playVideo">
-      Play
-    </button>
-    <button @click="iframe?.pauseVideo">
-      Pause
-    </button>
-  </div>
 </template>
 ```
 
