@@ -58,7 +58,7 @@ Only two props are required to work: `id` from the YouTube you want to render an
 
 ## Methods
 
-```vue
+```html
 <script setup>
 import { ref } from 'vue'
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
