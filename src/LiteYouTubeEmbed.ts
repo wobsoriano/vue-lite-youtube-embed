@@ -142,7 +142,7 @@ export default defineComponent({
     function addIframe() {
       if (iframe.value)
         return
-      emit('iframeAdded', iframe.value)
+      emit('iframeAdded')
       iframe.value = true
     }
 
