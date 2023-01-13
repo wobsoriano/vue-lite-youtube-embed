@@ -6,7 +6,7 @@
  * https://github.com/ibrahimcesar/react-lite-youtube-embed/blob/main/src/lib/index.tsx
  */
 import type { PropType } from 'vue-demi'
-import { computed, defineComponent, onMounted, ref } from 'vue-demi'
+import { computed, defineComponent, ref } from 'vue-demi'
 import h from './utils'
 import './style.css'
 
@@ -159,11 +159,6 @@ export default defineComponent({
         return
       preconnected.value = true
     }
-
-    onMounted(() => {
-      warmConnections()
-      addIframe()
-    })
 
     expose({
       getPlayerInstance() {
