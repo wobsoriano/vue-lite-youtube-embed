@@ -32,6 +32,7 @@
     "release": "bumpp && npm publish",
     "update-deps": "taze -w && pnpm i",
     "build": "tsup",
+    "dev": "tsup --watch --onSuccess=\"pnpm -C playground dev\"",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
@@ -47,12 +48,12 @@
     "vue-demi": "latest"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.34.0",
+    "@antfu/eslint-config": "^0.34.1",
     "bumpp": "^8.2.1",
-    "eslint": "^8.29.0",
-    "taze": "^0.8.4",
+    "eslint": "^8.31.0",
+    "taze": "^0.8.5",
     "tsup": "^6.5.0",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.4",
     "vue": "^3.2.45"
   },
   "eslintConfig": {
