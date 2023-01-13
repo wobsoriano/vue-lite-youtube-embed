@@ -1,8 +1,5 @@
 # vue-lite-youtube-embed
 
-[![npm version](https://badge.fury.io/js/vue-lite-youtube-embed.svg)](https://badge.fury.io/js/vue-lite-youtube-embed)
-[![bundle size](https://badgen.net/bundlephobia/minzip/vue-lite-youtube-embed)](https://bundlephobia.com/result?p=vue-lite-youtube-embed)
-
 A private by default, faster and cleaner YouTube embed component for Vue applications.
 
 Vue port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lite-youtube-embed). Provide videos with a supercharged focus on visual performance. An ["Adaptive Loading"](https://www.youtube.com/watch?v=puUPpVrIRkc) way to handle iframes for YouTube.
@@ -10,7 +7,7 @@ Vue port of [React Lite YouTube Embed](https://github.com/ibrahimcesar/react-lit
 ## Installation
 
 ```bash
-pnpm add vue-lite-youtube-embed
+npm install vue-lite-youtube-embed
 ```
 
 ## Usage
@@ -58,6 +55,37 @@ Only two props are required to work: `id` from the YouTube you want to render an
 ## Events
 
 - **iframeAdded** - Fired when iframe is added.
+
+## Methods
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import 'vue-lite-youtube-embed/style.css'
+
+const iframe = ref(null)
+</script>
+
+<template>
+  <LiteYouTubeEmbed
+    id="dQw4w9WgXcQ"
+    ref="iframe"
+    title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
+  />
+  <div v-if="iframe">
+    <button @click="iframe?.stopVideo">
+      Stop
+    </button>
+    <button @click="iframe?.playVideo">
+      Play
+    </button>
+    <button @click="iframe?.pauseVideo">
+      Pause
+    </button>
+  </div>
+</template>
+```
 
 ## Credits
 
