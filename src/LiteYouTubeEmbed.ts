@@ -8,7 +8,7 @@
 import type { PropType } from 'vue-demi'
 import { computed, defineComponent, ref } from 'vue-demi'
 import h from './utils'
-import './main.css'
+import './style.css'
 
 const linkPreconnect = (href: string) => h('link', { rel: 'preconnect', href })
 
