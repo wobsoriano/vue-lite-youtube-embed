@@ -24,17 +24,9 @@ function runCommand(iframe: HTMLIFrameElement | null, func: 'stopVideo' | 'pause
   iframe.contentWindow?.postMessage(`{"event":"command","func":"${func}","args":""}`, '*')
 }
 
-function domProps(props: Record<string, any>) {
-  if (isVue2) {
-    return {
-      domProps: props,
-    }
-  }
-
-  return props
-}
-
-const linkPreconnect = (href: string) => h('link', domProps({ rel: 'preconnect', href }))
+const linkPreconnect = (href: string) => h('link', {
+  domProps: { rel: 'preconnect', href },
+})
 
 export default defineComponent({
   props: {
@@ -188,11 +180,13 @@ export default defineComponent({
     })
 
     const vnodeList = [
-      h('link', domProps({
-        rel: props.rel,
-        href: posterUrl.value,
-        as: 'image',
-      })),
+      h('link', {
+        domProps: {
+          rel: props.rel,
+          href: posterUrl.value,
+          as: 'image',
+        },
+      }),
       preconnected.value ? linkPreconnect(ytUrl.value) : null,
       preconnected.value ? linkPreconnect('https://www.google.com') : null,
       props.adNetwork ? linkPreconnect('https://static.doubleclick.net') : null,
@@ -207,7 +201,7 @@ export default defineComponent({
             click: addIframe,
           },
           class: `${props.wrapperClass} ${iframe.value && props.activatedClass}`,
-          ...domProps({ 'data-title': props.title }),
+          domProps: { 'data-title': props.title },
           style: {
             'backgroundImage': `url(${posterUrl.value})`,
             '--aspect-ratio': `${(props.aspectHeight / props.aspectWidth) * 100}%`,
@@ -215,17 +209,19 @@ export default defineComponent({
         },
         [
           // Play button
-          h('button', domProps({
-            type: 'button',
-            class: props.playerClass,
-            ariaLabel: `${props.announce} ${props.title}`,
-          })),
+          h('button', {
+            domProps: {
+              type: 'button',
+              class: props.playerClass,
+              ariaLabel: `${props.announce} ${props.title}`,
+            },
+          }),
           // Iframe
           iframe.value
             ? h('iframe', {
               ref: iframeElement,
               class: props.iframeClass,
-              ...domProps({
+              domProps: {
                 title: props.title,
                 width: 560,
                 height: 315,
@@ -234,7 +230,7 @@ export default defineComponent({
                     'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
                 allowfullscreen: true,
                 src: iframeSrc.value,
-              }),
+              },
             })
             : null,
         ],
