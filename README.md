@@ -26,6 +26,29 @@ import 'vue-lite-youtube-embed/style.css'
 </template>
 ```
 
+<details>
+<summary>Click here for Vue 2 usage</summary>
+
+```bash
+npm install vue-lite-youtube-embed vue-frag
+```
+
+```vue
+<script setup>
+import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
+import { Fragment } from 'vue-frag'
+import 'vue-lite-youtube-embed/style.css'
+</script>
+
+<template>
+  <LiteYouTubeEmbed
+    id="dQw4w9WgXcQ"
+    title="Rick Astley - Never Gonna Give You Up (Official Music Video)"
+  />
+</template>
+```
+</details>
+
 ## Props
 
 Only two props are required to work: `id` from the YouTube you want to render and `title`
