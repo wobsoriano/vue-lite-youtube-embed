@@ -6,7 +6,7 @@
  * https://github.com/ibrahimcesar/react-lite-youtube-embed/blob/main/src/lib/index.tsx
  */
 import type { PropType } from 'vue-demi'
-import { computed, defineComponent, ref } from 'vue-demi'
+import { computed, defineComponent, isVue2, ref } from 'vue-demi'
 import h from './utils'
 import './style.css'
 
@@ -177,7 +177,7 @@ export default defineComponent({
       addIframe,
     })
 
-    return () => [
+    const vnodeList = [
       h('link', {
         rel: props.rel,
         href: posterUrl.value,
@@ -228,5 +228,10 @@ export default defineComponent({
         ],
       ),
     ]
+
+    if (isVue2)
+      return () => h('Fragment', () => vnodeList)
+
+    return () => vnodeList
   },
 })
