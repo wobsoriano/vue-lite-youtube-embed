@@ -3,6 +3,7 @@ import { h as hDemi, isVue2 } from 'vue-demi'
 interface Options {
   props?: Record<any, any>
   domProps?: Record<any, any>
+  attrs?: Record<any, any>
   on?: Record<any, any>
 }
 
@@ -20,10 +21,10 @@ const h = (type: String | Record<any, any>, options: Options & any = {}, chidren
   if (isVue2)
     return hDemi(type, options, chidren)
 
-  const { props, domProps, on, ...extraOptions } = options
+  const { props, domProps, on, attrs, ...extraOptions } = options
 
   const ons = adaptOnsV3(on)
-  const params = { ...extraOptions, ...props, ...domProps, ...ons }
+  const params = { ...extraOptions, ...props, ...domProps, ...ons, ...attrs }
   return hDemi(type, params, chidren)
 }
 

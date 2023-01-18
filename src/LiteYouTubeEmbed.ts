@@ -25,7 +25,7 @@ function runCommand(iframe: HTMLIFrameElement | null, func: 'stopVideo' | 'pause
 }
 
 const linkPreconnect = (href: string) => h('link', {
-  domProps: { rel: 'preconnect', href },
+  attrs: { rel: 'preconnect', href },
 })
 
 export default defineComponent({
@@ -181,7 +181,7 @@ export default defineComponent({
 
     const vnodeList = [
       h('link', {
-        domProps: {
+        attrs: {
           rel: props.rel,
           href: posterUrl.value,
           as: 'image',
@@ -200,8 +200,8 @@ export default defineComponent({
             pointerover: warmConnections,
             click: addIframe,
           },
-          class: `${props.wrapperClass} ${iframe.value && props.activatedClass}`,
-          domProps: { 'data-title': props.title },
+          class: `${props.wrapperClass} ${iframe.value ? props.activatedClass : ''}`,
+          attrs: { 'data-title': props.title },
           style: {
             'backgroundImage': `url(${posterUrl.value})`,
             '--aspect-ratio': `${(props.aspectHeight / props.aspectWidth) * 100}%`,
@@ -210,9 +210,9 @@ export default defineComponent({
         [
           // Play button
           h('button', {
-            domProps: {
+            class: props.playerClass,
+            attrs: {
               type: 'button',
-              class: props.playerClass,
               ariaLabel: `${props.announce} ${props.title}`,
             },
           }),
@@ -221,7 +221,7 @@ export default defineComponent({
             ? h('iframe', {
               ref: iframeElement,
               class: props.iframeClass,
-              domProps: {
+              attrs: {
                 title: props.title,
                 width: 560,
                 height: 315,
@@ -238,7 +238,7 @@ export default defineComponent({
     ]
 
     if (isVue2)
-      return () => h('Fragment', () => vnodeList)
+      return () => h('Fragment', {}, vnodeList)
 
     return () => vnodeList
   },
