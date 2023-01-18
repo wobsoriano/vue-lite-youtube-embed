@@ -28,6 +28,7 @@ import 'vue-lite-youtube-embed/style.css'
 
 <details>
 <summary>Click here for Vue 2 usage</summary>
+<br>
 
 ```bash
 npm install vue-lite-youtube-embed vue-frag
