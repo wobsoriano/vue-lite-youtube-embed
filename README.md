@@ -34,6 +34,19 @@ import 'vue-lite-youtube-embed/style.css'
 npm install vue-lite-youtube-embed vue-frag
 ```
 
+```ts
+// src/main.ts
+import Vue from 'vue'
+import { Fragment } from 'vue-frag'
+import App from './App.vue'
+
+Vue.component('Fragment', Fragment)
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+```
+
 ```vue
 <script setup>
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
