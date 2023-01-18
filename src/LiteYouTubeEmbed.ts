@@ -179,7 +179,7 @@ export default defineComponent({
       addIframe,
     })
 
-    const vnodeList = [
+    const vnodeList = (): any[] => [
       h('link', {
         attrs: {
           rel: props.rel,
@@ -238,8 +238,8 @@ export default defineComponent({
     ]
 
     if (isVue2)
-      return () => h('Fragment', {}, vnodeList)
+      return () => h('Fragment', {}, vnodeList())
 
-    return () => vnodeList
+    return () => vnodeList()
   },
 })
