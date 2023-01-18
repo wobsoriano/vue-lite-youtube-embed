@@ -50,7 +50,6 @@ new Vue({
 ```vue
 <script setup>
 import LiteYouTubeEmbed from 'vue-lite-youtube-embed'
-import { Fragment } from 'vue-frag'
 import 'vue-lite-youtube-embed/style.css'
 </script>
 
