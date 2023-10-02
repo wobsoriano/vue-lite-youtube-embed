@@ -214,8 +214,8 @@ export default defineComponent({
           h('button', {
             class: props.playerClass,
             attrs: {
-              type: 'button',
-              ariaLabel: `${props.announce} ${props.title}`,
+              'type': 'button',
+              'aria-label': `${props.announce} ${props.title}`,
             },
           }),
           // Iframe
