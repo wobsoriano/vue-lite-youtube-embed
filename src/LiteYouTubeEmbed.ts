@@ -24,9 +24,11 @@ function runCommand(iframe: HTMLIFrameElement | null, func: 'stopVideo' | 'pause
   iframe.contentWindow?.postMessage(`{"event":"command","func":"${func}","args":""}`, '*')
 }
 
-const linkPreconnect = (href: string) => h('link', {
-  attrs: { rel: 'preconnect', href },
-})
+function linkPreconnect(href: string) {
+  return h('link', {
+    attrs: { rel: 'preconnect', href },
+  })
+}
 
 export default defineComponent({
   props: {
