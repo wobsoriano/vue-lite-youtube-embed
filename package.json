@@ -1,7 +1,7 @@
 {
   "name": "vue-lite-youtube-embed",
   "type": "module",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "A private by default, faster and cleaner YouTube embed component for Vue applications.",
   "license": "MIT",
   "repository": {
