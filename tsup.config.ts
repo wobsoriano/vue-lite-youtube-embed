@@ -2,14 +2,11 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
+  splitting: false,
+  sourcemap: true,
   clean: true,
-  minify: true,
+  format: ['cjs', 'esm', 'iife'],
   external: ['vue-demi'],
+  globalName: 'VueLiteYouTubeEmbed',
   dts: true,
-  outExtension({ format }) {
-    return {
-      js: format === 'esm' ? '.mjs' : `.${format}`,
-    }
-  },
 })
