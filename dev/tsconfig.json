@@ -1,14 +1,14 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "useDefineForClassFields": true,
     "jsx": "preserve",
-    "isolatedModules": true,
-    "noEmit": true,
+    "useDefineForClassFields": true,
     "paths": {
       "vue-lite-youtube-embed": ["../src"]
-    }
+    },
+    "noEmit": true,
+    "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
